@@ -1,0 +1,31 @@
+.analyze-container {
+    padding: 2rem;
+    text-align: center;
+}
+
+.button-group {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+    .button-group button {
+        padding: 8px 12px;
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+        .button-group button:hover {
+            background-color: #2563eb;
+        }
+
+#chart-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}

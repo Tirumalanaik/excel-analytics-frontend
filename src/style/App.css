@@ -1,0 +1,46 @@
+﻿.dashboard {
+    padding: 50px;
+    text-align: center;
+}
+
+.main-content {
+    min-height: 90vh;
+    padding: 20px;
+}
+
+/* Light mode styles */
+body.light-mode {
+    background-image: url('/public/bglight.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #000; /* Black text */
+    background-color: #fff;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-image: url('/public/bgdark.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff; /* White text */
+    background-color: #000;
+}
+
+/* Inherit color for shared elements */
+.login-box h2,
+.input-group input,
+.input-group select,
+.login-box button,
+.login-page p,
+.navbar,
+.navbar a,
+/* ✅ Added below for register page */
+.register-box h2,
+.register-box button,
+.register-page p {
+    color: inherit;
+}

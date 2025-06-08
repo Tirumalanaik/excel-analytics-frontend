@@ -1,0 +1,128 @@
+/* Base light mode (default) */
+body.light-mode .dashboard-container {
+	background-color: #f8f9fa;
+	color: #000;
+}
+
+body.light-mode .stat-card,
+body.light-mode .recent-files {
+	background: white;
+	color: #000;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode table th,
+body.light-mode table td {
+	border-bottom: 1px solid #ccc;
+}
+
+/* Dark mode overrides */
+body.dark-mode .dashboard-container {
+	background-color: #121212;
+	color: #fff;
+}
+
+body.dark-mode .stat-card,
+body.dark-mode .recent-files {
+	background: #1e1e1e;
+	color: #fff;
+	box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode table th,
+body.dark-mode table td {
+	border-bottom: 1px solid #444;
+}
+
+body.dark-mode .analyze {
+	color: #66b0ff;
+}
+
+body.dark-mode .delete {
+	color: #ff6666;
+}
+
+/* Keep these unchanged—they work in both modes */
+.dashboard-container {
+	padding: 2rem;
+	font-family: sans-serif;
+}
+
+.dashboard-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+	.dashboard-header nav {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+	}
+
+.user-info {
+	text-align: right;
+}
+
+.welcome {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.stats {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	margin: 2rem 0;
+}
+
+.stat-card {
+	padding: 1.5rem;
+	border-radius: 12px;
+	text-align: center;
+	flex: 1;
+	max-width: 200px;
+}
+
+	.stat-card.upload {
+		border-left: 5px solid #007bff;
+	}
+
+	.stat-card.charts {
+		border-left: 5px solid #28a745;
+	}
+
+	.stat-card.files {
+		border-left: 5px solid #6f42c1;
+	}
+
+.recent-files {
+	padding: 1rem;
+	border-radius: 12px;
+}
+
+.files-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	padding: 0.75rem;
+	text-align: left;
+}
+
+.analyze {
+	text-decoration: none;
+}
+
+.delete {
+	text-decoration: none;
+}

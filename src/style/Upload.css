@@ -1,0 +1,210 @@
+/* ========== LIGHT MODE ========== */
+body.light-mode .upload-page {
+    background: #ffffff;
+    color: #333;
+}
+
+    body.light-mode .upload-page h2 {
+        color: #007bff;
+    }
+
+    body.light-mode .upload-page p,
+    body.light-mode .upload-label p,
+    body.light-mode .upload-label small {
+        color: #555;
+    }
+
+body.light-mode .upload-box {
+    background-color: #f8f9fa;
+    border: 2px dashed #007bff;
+}
+
+    body.light-mode .upload-box:hover {
+        background-color: #e9f5ff;
+    }
+
+body.light-mode .upload-label {
+    color: #007bff;
+}
+
+body.light-mode .upload-btn {
+    background-color: #007bff;
+    color: #fff;
+}
+
+    body.light-mode .upload-btn:hover {
+        background-color: #0056b3;
+    }
+
+body.light-mode .preview-table {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+    body.light-mode .preview-table th {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    body.light-mode .preview-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+body.light-mode .file-name {
+    color: #333;
+}
+
+
+/* ========== DARK MODE ========== */
+body.dark-mode .upload-page {
+    background: #1e1e1e;
+    color: #f5f5f5;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+}
+
+    body.dark-mode .upload-page h2 {
+        color: #66b0ff;
+    }
+
+    body.dark-mode .upload-page p,
+    body.dark-mode .upload-label p,
+    body.dark-mode .upload-label small {
+        color: #ccc;
+    }
+
+body.dark-mode .upload-box {
+    background-color: #2b2b2b;
+    border: 2px dashed #66b0ff;
+}
+
+    body.dark-mode .upload-box:hover {
+        background-color: #334d66;
+    }
+
+body.dark-mode .upload-label {
+    color: #66b0ff;
+}
+
+body.dark-mode .upload-btn {
+    background-color: #66b0ff;
+    color: #000;
+}
+
+    body.dark-mode .upload-btn:hover {
+        background-color: #468cd4;
+    }
+
+body.dark-mode .preview-table {
+    background-color: #2c2c2c;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+    body.dark-mode .preview-table th {
+        background-color: #1f3a5f;
+        color: #fff;
+    }
+
+    body.dark-mode .preview-table tr:nth-child(even) {
+        background-color: #2b2b2b;
+    }
+
+body.dark-mode .file-name {
+    color: #eee;
+}
+
+
+/* ========== BASE ========== */
+.upload-page {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+    .upload-page h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .upload-page p {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1rem;
+    }
+
+.upload-box {
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-label {
+    cursor: pointer;
+    display: inline-block;
+}
+
+    .upload-label strong {
+        display: block;
+        margin-top: 10px;
+        font-size: 1.1rem;
+    }
+
+.upload-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
+}
+
+.preview-table {
+    margin-top: 40px;
+    overflow-x: auto;
+    border-radius: 12px;
+}
+
+    .preview-table h3 {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .preview-table table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .preview-table th,
+    .preview-table td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+@media screen and (max-width: 600px) {
+    .upload-page {
+        padding: 20px;
+    }
+
+    .upload-btn {
+        width: 100%;
+    }
+}
+
+.file-name {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1rem;
+}

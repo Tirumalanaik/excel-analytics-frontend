@@ -11,3 +11,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Light Theme */
+.light-mode {
+    background-color: #f0f2f5;
+    color: #222;
+}
+
+/* Dark Theme */
+.dark-mode {
+    background-color: #0f1f3a;
+    color: white;
+}
+/* index.css */
+
+/* Light Mode Defaults */
+body.light-mode {
+    background-color: #f5f7fa;
+    color: #111;
+}
+
+    body.light-mode .card {
+        background-color: white;
+        color: #111;
+    }
+
+    body.light-mode input,
+    body.light-mode button {
+        background-color: #ffffff;
+        color: #111;
+        border: 1px solid #ccc;
+    }
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #0a1d3d;
+    color: #f0f0f0;
+}
+
+    body.dark-mode .card {
+        background-color: #102a53;
+        color: #f0f0f0;
+    }
+
+    body.dark-mode input,
+    body.dark-mode button {
+        background-color: #183b6b;
+        color: #f0f0f0;
+        border: 1px solid #284a7d;
+    }

@@ -1,0 +1,23 @@
+.history-container {
+    padding: 2rem;
+}
+
+.upload-block {
+    margin-bottom: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #f9f9f9;
+}
+
+    .upload-block table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .upload-block th,
+    .upload-block td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }

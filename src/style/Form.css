@@ -1,0 +1,148 @@
+﻿/* Background layout
+.login-page {
+    height: 100vh;
+    background: linear-gradient(to bottom right, #102b44, #0f1f3a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: 'Segoe UI', sans-serif;
+}
+     */
+/* Global background for the entire app */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Login container */
+.login-box {
+    background: #0c1b30;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+    /* Heading */
+    .login-box h2 {
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+
+/* Input group with icon */
+.input-group {
+    background: #122a47;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+    .input-group .icon {
+        margin-right: 10px;
+        color: #ccc;
+        font-size: 18px;
+    }
+
+    /* Input fields */
+    .input-group input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        flex: 1;
+        font-size: 14px;
+    }
+
+        .input-group input::placeholder {
+            color: #999;
+        }
+
+/* Login button */
+.login-box button {
+    padding: 12px;
+    font-size: 16px;
+    background: linear-gradient(to right, #1f4b85, #275b9a);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+    .login-box button:hover {
+        background: linear-gradient(to right, #255088, #2c6dbe);
+    }
+.input-group select {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100%;
+    appearance: none; /* Removes default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+    .input-group select option {
+        background-color: #000;
+        color: #fff;
+    }
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    background-color: transparent;
+}
+
+.login-box {
+    padding: 2rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+    transition: all 0.3s ease;
+}
+
+/* Add this class */
+.card {
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .card {
+    background-color: #1f2937; /* dark gray */
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .card {
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.login-page,
+.register-page {
+    height: 100vh;
+    background: transparent; /* Show body background */
+    background-size: unset;
+    background-position: unset;
+    background-repeat: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: 'Segoe UI', sans-serif;
+}
