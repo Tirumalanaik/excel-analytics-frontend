@@ -5,6 +5,7 @@ import '../style/Navbar.css';
 function Navbar() {
     const navigate = useNavigate();
     const isLoggedIn = !!localStorage.getItem('token');
+    const role = localStorage.getItem('role'); // 👈 Get user role
     const [showDropdown, setShowDropdown] = useState(false);
     const [language, setLanguage] = useState('EN');
     const [theme, setTheme] = useState('dark');
@@ -14,6 +15,7 @@ function Navbar() {
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
+        localStorage.removeItem('role'); // 👈 Clear role on logout
         navigate('/login');
     };
 
@@ -32,10 +34,8 @@ function Navbar() {
     };
 
     useEffect(() => {
-        // Set initial theme class
         document.body.className = theme === 'dark' ? 'dark-mode' : 'light-mode';
     }, [theme]);
-    
 
     return (
         <nav className="navbar">
@@ -56,8 +56,13 @@ function Navbar() {
             <ul className="navbar-links">
                 {isLoggedIn ? (
                     <>
-                        <li><Link to="/dashboard">Dashboard</Link></li>
-                        <li><Link to="/upload">Upload</Link></li>
+                        {/* Show Dashboard and Upload only if NOT admin */}
+                        {role !== 'admin' && (
+                            <>
+                                <li><Link to="/dashboard">Dashboard</Link></li>
+                                <li><Link to="/upload">Upload</Link></li>
+                            </>
+                        )}
                         <li className="email-dropdown">
                             <button onClick={toggleDropdown} className="email-btn">
                                 {userEmail}

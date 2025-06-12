@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, adminOnly = false }) => {
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -14,13 +14,17 @@ const ProtectedRoute = ({ children }) => {
         const isExpired = decoded.exp * 1000 < Date.now();
 
         if (isExpired) {
-            localStorage.removeItem('token');
+            localStorage.clear();
             return <Navigate to="/login" />;
+        }
+
+        if (adminOnly && decoded.role !== 'admin') {
+            return <Navigate to="/" />; // redirect non-admins
         }
 
         return children;
     } catch (err) {
-        localStorage.removeItem('token');
+        localStorage.clear();
         return <Navigate to="/login" />;
     }
 };
