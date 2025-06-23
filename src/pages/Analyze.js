@@ -13,7 +13,13 @@ const Analyze = () => {
     const { id } = useParams();
     const location = useLocation();
     const [excelData, setExcelData] = useState([]);
-    const [chartTitle, setChartTitle] = useState('Data Analysis');
+    const [chartType, setChartType] = useState('bar');
+    const [chartTitle, setChartTitle] = useState('Excel Data Analysis');
+    const [xAxisLabel, setXAxisLabel] = useState('');
+    const [yAxisLabel, setYAxisLabel] = useState('');
+    const [selectedXColumn, setSelectedXColumn] = useState('');
+    const [selectedYColumn, setSelectedYColumn] = useState('');
+    const [summary, setSummary] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,36 +37,64 @@ const Analyze = () => {
                 console.error("Error loading data:", err);
             }
         };
-
         fetchData();
     }, [location.state, id]);
 
+    const handleSummarize = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const res = await axios.post(
+                `http://localhost:5000/api/ai/summarize`,
+                { data: excelData },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setSummary(res.data.summary);
+        } catch (err) {
+            console.error("Error fetching summary:", err);
+        }
+    };
+
     const generateChartData = () => {
-        if (!excelData.length) return null;
+        if (!excelData.length || !selectedXColumn || !selectedYColumn) return null;
 
-        const keys = Object.keys(excelData[0]);
-        const labelKey = keys[0]; // Use first column as label (e.g., "Name", "Date", etc.)
-        const valueKey = keys[1]; // Use second column as value (e.g., "Sales", "Marks", etc.)
-
-        const labels = excelData.map(row => row[labelKey]);
-        const values = excelData.map(row => Number(row[valueKey]));
+        const labels = excelData.map(row => row[selectedXColumn]);
+        const values = excelData.map(row => Number(row[selectedYColumn]));
 
         return {
             labels,
             datasets: [
                 {
-                    label: valueKey,
+                    label: selectedYColumn,
                     data: values,
-                    backgroundColor: [
-                        '#6366f1', '#10b981', '#f59e0b', '#ef4444', '#3b82f6',
-                        '#8b5cf6', '#14b8a6', '#f97316', '#e11d48', '#22c55e'
-                    ],
+                    backgroundColor: '#3b82f6',
                 },
             ],
         };
     };
 
-    const chartData = generateChartData();
+    const chartOptions = {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: chartTitle,
+            },
+        },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: xAxisLabel,
+                },
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: yAxisLabel,
+                },
+            },
+        },
+    };
 
     const downloadAsImage = async () => {
         const chartDiv = document.getElementById('chart-wrapper');
@@ -80,28 +114,79 @@ const Analyze = () => {
         pdf.save('chart.pdf');
     };
 
+    const handleSaveChart = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            await axios.put(`http://localhost:5000/api/upload/chart/${id}`,
+                {
+                    chartData: generateChartData(),
+                    chartType,
+                    chartTitle,
+                    axisLabels: { x: xAxisLabel, y: yAxisLabel },
+                },
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+            alert('✅ Chart saved!');
+        } catch (err) {
+            console.error('❌ Save chart failed:', err);
+            alert('Failed to save chart.');
+        }
+    };
+
+    const chartData = generateChartData();
+    const columns = excelData.length ? Object.keys(excelData[0]) : [];
+
     return (
         <div className="analyze-container">
             <h2>{chartTitle}</h2>
+            <div className="input-group">
+                <label>Chart Title:</label>
+                <input value={chartTitle} onChange={(e) => setChartTitle(e.target.value)} />
 
-            {chartData ? (
-                <>
-                    <div className="button-group">
-                        <button onClick={() => setChartTitle('Bar Chart View')}>Bar Chart</button>
-                        <button onClick={() => setChartTitle('Pie Chart View')}>Pie Chart</button>
-                        <button onClick={() => setChartTitle('Line Chart View')}>Line Chart</button>
-                        <button onClick={downloadAsImage}>Download PNG</button>
-                        <button onClick={downloadAsPDF}>Download PDF</button>
-                    </div>
+                <label>X Axis:</label>
+                <select value={selectedXColumn} onChange={(e) => setSelectedXColumn(e.target.value)}>
+                    <option value="">Select column</option>
+                    {columns.map(col => <option key={col} value={col}>{col}</option>)}
+                </select>
 
-                    <div id="chart-wrapper">
-                        {chartTitle.includes('Bar') && <Bar data={chartData} />}
-                        {chartTitle.includes('Pie') && <Pie data={chartData} />}
-                        {chartTitle.includes('Line') && <Line data={chartData} />}
-                    </div>
-                </>
-            ) : (
-                <p>Loading or no data found...</p>
+                <label>Y Axis:</label>
+                <select value={selectedYColumn} onChange={(e) => setSelectedYColumn(e.target.value)}>
+                    <option value="">Select column</option>
+                    {columns.map(col => <option key={col} value={col}>{col}</option>)}
+                </select>
+
+                <label>Chart Type:</label>
+                <select value={chartType} onChange={(e) => setChartType(e.target.value)}>
+                    <option value="bar">Bar</option>
+                    <option value="line">Line</option>
+                    <option value="pie">Pie</option>
+                </select>
+
+                <label>X Axis Label:</label>
+                <input value={xAxisLabel} onChange={(e) => setXAxisLabel(e.target.value)} />
+
+                <label>Y Axis Label:</label>
+                <input value={yAxisLabel} onChange={(e) => setYAxisLabel(e.target.value)} />
+
+               
+                <button onClick={downloadAsImage}>Download PNG</button>
+                <button onClick={downloadAsPDF}>Download PDF</button>
+                <button onClick={handleSaveChart}>Save Chart</button>
+            </div>
+
+            <div id="chart-wrapper">
+                {chartType === 'bar' && chartData && <Bar data={chartData} options={chartOptions} />}
+                {chartType === 'line' && chartData && <Line data={chartData} options={chartOptions} />}
+                {chartType === 'pie' && chartData && <Pie data={chartData} />}
+            </div>
+
+            {summary && (
+                <div className="summary-box">
+                    <h3>📊 AI Summary:</h3>
+                    <p>{summary}</p>
+                </div>
             )}
         </div>
     );

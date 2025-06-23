@@ -8,6 +8,7 @@ const Dashboard = () => {
     const [uploadedFiles, setUploadedFiles] = useState([]);
     const navigate = useNavigate();
     const email = localStorage.getItem('email') || 'User';
+    const chartCount = uploadedFiles.filter(file => file.chartData).length;
 
     useEffect(() => {
         const fetchUploads = async () => {
@@ -56,9 +57,10 @@ const Dashboard = () => {
                     <p>Import new data for analysis</p>
                 </Link>
                 <div className="stat-card charts">
-                    <h3>{uploadedFiles.length}</h3>
+                    <h3>{chartCount}</h3>
                     <p>Charts created</p>
                 </div>
+
                 <div className="stat-card files">
                     <h3>{uploadedFiles.length}</h3>
                     <p>Files uploaded</p>

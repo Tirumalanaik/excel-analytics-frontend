@@ -12,24 +12,36 @@ const ChartTable = ({ charts }) => {
                         <th>Title</th>
                         <th>Type</th>
                         <th>Created At</th>
+                        <th>Created By</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {charts?.length > 0 ? (
                         charts.map((chart) => (
                             <tr key={chart._id}>
                                 <td>{chart._id}</td>
-                                <td>{chart.title || 'Untitled'}</td>
-                                <td>{chart.type || 'N/A'}</td>
+                                <td>{chart.chartTitle || 'Untitled'}</td>
+                                <td>{chart.chartType || 'N/A'}</td>
                                 <td>{new Date(chart.createdAt).toLocaleString()}</td>
+                                <td>{chart.userId?.email || 'Unknown'}</td>
+                                <td>
+                                    <a href={`/view-chart/${chart._id}`} className="view-link">
+                                        View Chart
+                                    </a>
+                                </td>
                             </tr>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="4">No charts found</td>
+                            <td colSpan="6">No charts found</td>
                         </tr>
                     )}
                 </tbody>
+
+
+
             </table>
         </div>
     );

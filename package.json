@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.9.0",
     "chart.js": "^4.4.9",
+    "chartjs-plugin-datalabels": "^2.2.0",
+    "chartjs-plugin-trendline": "^2.1.9",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",
     "jwt-decode": "^4.0.0",

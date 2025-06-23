@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AdminDashboard from '../components/admin/AdminDasboard';
+import AdminDashboard from '../components/admin/AdminDashboard';
 import {
     fetchUsers,
     fetchCharts,
