@@ -1,4 +1,11 @@
-﻿.dashboard {
+﻿body {
+    background-color: #ffffff;
+    color: #111111; /* Dark readable text */
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.dashboard {
     padding: 50px;
     text-align: center;
 }

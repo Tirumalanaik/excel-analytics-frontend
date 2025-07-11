@@ -1,0 +1,9 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/Tirumalanaik/excel-analytics-frontend.git
+[submodule "excel-analytics/backend"]
+	path = excel-analytics/backend
+	url = https://github.com/Tirumalanaik/excel-analytics-backend.git
+[submodule "excel-analytics/frontend"]
+	path = excel-analytics/frontend
+	url = https://github.com/Tirumalanaik/excel-analytics-frontend.git

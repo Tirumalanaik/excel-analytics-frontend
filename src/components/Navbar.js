@@ -27,12 +27,7 @@ function Navbar() {
         setShowDropdown(prev => !prev);
     };
 
-    const handleThemeToggle = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-        document.body.className = newTheme === 'dark' ? 'dark-mode' : 'light-mode';
-    };
-
+   
     const handleLanguageChange = (e) => {
         setLanguage(e.target.value);
     };
