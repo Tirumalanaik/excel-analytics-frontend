@@ -5,17 +5,21 @@ import '../style/Navbar.css';
 function Navbar() {
     const navigate = useNavigate();
     const isLoggedIn = !!localStorage.getItem('token');
-    const role = localStorage.getItem('role'); // 👈 Get user role
+    const role = localStorage.getItem('role');
     const [showDropdown, setShowDropdown] = useState(false);
     const [language, setLanguage] = useState('EN');
     const [theme, setTheme] = useState('dark');
 
     const userEmail = localStorage.getItem('email') || 'user@example.com';
 
+    useEffect(() => {
+        document.body.className = theme === 'dark' ? 'dark-mode' : 'light-mode';
+    }, [theme]);
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
-        localStorage.removeItem('role'); // 👈 Clear role on logout
+        localStorage.removeItem('role');
         navigate('/login');
     };
 
@@ -33,9 +37,8 @@ function Navbar() {
         setLanguage(e.target.value);
     };
 
-    useEffect(() => {
-        document.body.className = theme === 'dark' ? 'dark-mode' : 'light-mode';
-    }, [theme]);
+    // 👉 Don't render if admin is logged in
+    if (role === 'admin') return null;
 
     return (
         <nav className="navbar">
@@ -48,9 +51,7 @@ function Navbar() {
                     <option value="ES">ES</option>
                 </select>
 
-                <button onClick={handleThemeToggle} className="theme-toggle">
-                    {theme === 'dark' ? '🌞' : '🌙'}
-                </button>
+               
             </div>
 
             <ul className="navbar-links">

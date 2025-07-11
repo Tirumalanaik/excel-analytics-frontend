@@ -21,7 +21,7 @@ const AdminDashboardMain = () => {
             {/* Sidebar */}
             <div className="sidebar">
                 <div>
-                    <div className="logo">Company Logo</div>
+                    <div className="logo">Sora Analytics</div>
                     <div className="nav-menu">
                         {/* ✅ Correct active path check using location.pathname */}
                         <NavItem icon={<MdDashboard />} text="Dashboard" path="/admin/dashboard" active={location.pathname === '/admin/dashboard'} />
