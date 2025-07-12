@@ -1,113 +1,178 @@
-﻿/* Global login/register background */
-.login-page,
-.register-page {
-    height: 100vh;
-    background: transparent;
-    background-size: unset;
-    background-position: unset;
-    background-repeat: unset;
+﻿
+* {
+    box-sizing: border-box;
+}
+/* Full page layout */
+.login-page {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    height: 100vh;
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* Login container */
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 80px);
-    background-color: transparent;
-}
-
-/* Login box styling */
-.login-box {
-    background: #0c1b30;
-    padding: 2rem;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 400px;
-    margin: 2rem auto;
+/* Left section with marketing info */
+.login-info {
+    width: 50%;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    padding: 4rem;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+    justify-content: center;
+    text-align: left;
 }
 
-    /* Login heading */
-    .login-box h2 {
-        text-align: center;
-        color: #ffffff;
-        margin-bottom: 10px;
+    .login-info h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
     }
 
-/* Input group with icon */
+    .login-info p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .login-info img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        object-fit: contain; /* Ensures clean layout */
+    }
+
+
+/* Right login form */
+.login-box {
+    width: 50%;
+    background: #ffffff;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0;
+    box-shadow: none;
+    height: 100vh; /* ✅ Ensures it stretches full height like .login-info */
+}
+
+
+    /* Headline */
+    .login-box h2 {
+        color: #0c1b30;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+/* Input styling */
 .input-group {
-    background: #122a47;
-    border-radius: 10px;
+    background: #f3f6fb;
+    border-radius: 8px;
+    padding: 10px 14px;
     display: flex;
     align-items: center;
-    padding: 10px 14px;
+    margin-bottom: 15px;
 }
 
     .input-group .icon {
-        margin-right: 10px;
-        color: #ccc;
+        color: #5b5b5b;
         font-size: 18px;
+        margin-right: 12px;
     }
 
     .input-group input {
         background: transparent;
         border: none;
         outline: none;
-        color: #fff;
+        color: #333;
         flex: 1;
-        font-size: 14px;
+        font-size: 15px;
     }
 
         .input-group input::placeholder {
             color: #999;
         }
 
-    .input-group select {
-        background-color: #000;
-        color: #fff;
-        border: none;
-        outline: none;
-        font-size: 14px;
-        padding: 8px;
-        border-radius: 6px;
-        width: 100%;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-    }
-
-        .input-group select option {
-            background-color: #000;
-            color: #fff;
-        }
-
-/* Login button */
-.login-box button {
-    padding: 12px;
-    font-size: 16px;
-    background: linear-gradient(to right, #1f4b85, #275b9a);
-    color: #fff;
+/* Submit button */
+.login-box button[type="submit"] {
+    background: #0c1b30;
+    color: white;
     border: none;
     border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: 0.2s ease-in-out;
+    margin-top: 10px;
 }
 
-    .login-box button:hover {
-        background: linear-gradient(to right, #255088, #2c6dbe);
+    .login-box button[type="submit"]:hover {
+        background: #122c4a;
     }
 
-/* Optional reusable card style */
-.card {
-    transition: all 0.3s ease;
+/* Divider */
+.divider {
+    text-align: center;
+    margin: 20px 0 10px;
+    color: #aaa;
+    font-weight: 500;
+    position: relative;
+}
+
+    .divider::before,
+    .divider::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 40%;
+        height: 1px;
+        background: #ddd;
+    }
+
+    .divider::before {
+        left: 0;
+    }
+
+    .divider::after {
+        right: 0;
+    }
+
+/* Social buttons */
+.oauth-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+    .oauth-buttons button {
+        display: flex;
+        align-items: center;
+        padding: 10px 18px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .oauth-buttons img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+
+/* Bottom link */
+.login-box p {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.login-box a {
+    color: #0c1b30;
+    font-weight: 500;
+    text-decoration: none;
 }

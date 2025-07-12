@@ -64,7 +64,7 @@ ${formData.message}
 
     return (
         <div className="contact-container">
-            <h1><span className="highlight">Contact</span> Me</h1>
+            <h1><span className="highlight">Contact</span> Us</h1>
             <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="left">
                     <input

@@ -1,0 +1,137 @@
+/* Reset default spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.landing-page {
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    background: linear-gradient(to bottom right, #6f47ff, #db974c);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+.landing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: #0d0f1b;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.signin,
+.get-started {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.signin {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.get-started {
+    background: white;
+    color: #0d0f1b;
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 80px 60px;
+    flex: 1;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+    .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+        .hero-content h1 span {
+            color: #f1c40f;
+        }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        color: #f0f0f0;
+    }
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.purchase,
+.explore {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.purchase {
+    background: white;
+    color: #0d0f1b;
+}
+
+.explore {
+    background: #0d0f1b;
+    color: white;
+    border: 2px solid white;
+}
+
+.hero-image img {
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    margin-top: 40px;
+}

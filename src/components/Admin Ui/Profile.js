@@ -1,5 +1,11 @@
 ﻿import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import {
+    fetchAdminProfile,
+    updateAdminProfile,
+    updateAdminPassword,
+    toggle2FAEnable,
+    toggle2FADisable
+} from '../../services/adminapi';
 
 function Profile() {
     const [profile, setProfile] = useState({});
@@ -8,12 +14,10 @@ function Profile() {
     const [qrCode, setQrCode] = useState('');
     const [pwdForm, setPwdForm] = useState({ currentPassword: '', newPassword: '' });
 
-    const token = localStorage.getItem('token');
-    const headers = { Authorization: `Bearer ${token}` };
-
     useEffect(() => {
-        axios.get('/api/profile', { headers })
-            .then(res => {
+        const getProfile = async () => {
+            try {
+                const res = await fetchAdminProfile();
                 setProfile(res.data);
                 setForm({
                     name: res.data.name || '',
@@ -21,11 +25,13 @@ function Profile() {
                     phone: res.data.phone || '',
                     profilePic: res.data.profilePic || ''
                 });
-            })
-            .catch(err => {
+            } catch (err) {
                 console.error('Error fetching profile:', err);
                 alert('Failed to load profile');
-            });
+            }
+        };
+
+        getProfile();
     }, []);
 
     const handleFormChange = e => {
@@ -42,7 +48,7 @@ function Profile() {
         try {
             const data = new FormData();
             Object.entries(form).forEach(([k, v]) => data.append(k, v));
-            const res = await axios.put('/api/profile', data, { headers });
+            const res = await updateAdminProfile(data);
             setProfile(res.data);
             setEditMode(false);
             alert('Profile updated!');
@@ -55,7 +61,7 @@ function Profile() {
     const handlePasswordChange = async e => {
         e.preventDefault();
         try {
-            await axios.put('/api/profile/password', pwdForm, { headers });
+            await updateAdminPassword(pwdForm);
             alert('Password updated successfully!');
             setPwdForm({ currentPassword: '', newPassword: '' });
         } catch (err) {
@@ -65,15 +71,15 @@ function Profile() {
     };
 
     const toggle2FA = async () => {
-        const endpoint = profile.twoFA?.enabled ? 'disable' : 'enable';
         try {
-            const res = await axios.post(`/api/profile/2fa/${endpoint}`, {}, { headers });
-            if (endpoint === 'enable') {
-                setQrCode(res.data.qrData);
-                alert('Scan the QR code using your Authenticator app.');
-            } else {
+            if (profile.twoFA?.enabled) {
+                await toggle2FADisable();
                 setProfile(prev => ({ ...prev, twoFA: { enabled: false } }));
                 alert('2FA disabled.');
+            } else {
+                const res = await toggle2FAEnable();
+                setQrCode(res.data.qrData);
+                alert('Scan the QR code using your Authenticator app.');
             }
         } catch (err) {
             console.error('Error toggling 2FA:', err);
@@ -96,9 +102,9 @@ function Profile() {
                 </form>
             ) : (
                 <>
-                        {profile.profilePic && (
-                            <img src={`http://localhost:5000${profile.profilePic}`} width="120" alt="Profile" />
-                        )}
+                    {profile.profilePic && (
+                        <img src={`http://localhost:5000${profile.profilePic}`} width="120" alt="Profile" />
+                    )}
 
                     <p><strong>Name:</strong> {profile.name}</p>
                     <p><strong>Email:</strong> {profile.email}</p>
